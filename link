@@ -1,4 +1,6 @@
+
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #define SIZE 40
 struct link *additems (struct link *head);
@@ -8,7 +10,7 @@ void DeleteMemory (struct link *head);
 struct items   //定义物品数据 
 {
 int price ;
-char name[SiZE];
+char name;
 int date ;//存储节点的数据信息
 struct link *next ;//存储直接后继节点的地址
  
@@ -18,13 +20,13 @@ int main()
 {
 	int i = 0;
 	char c;
-	struct link *head = NULL //定义链表头指针
+	struct link *head = NULL; //定义链表头指针
 	printf ("Do you want add a new item (Y/N)\n");
 	scanf ("%c",&c);//把用户的结果存储在c字符的地址上
 	while ( c == 'Y' || c == 'y')
 	{
-		head = Additems (head); //向head 为头指针的链表末尾添加 节点 即物品
-		DisplyNode (head)；//显示各节点信息(如何理解？)
+		head = Additems(head); //向head 为头指针的链表末尾添加 节点 即物品
+		DisplyNode (head);//显示各节点信息(如何理解？)
 		printf("\nDo you want to add a new item (Y/N)\n");
 		scanf ("%c ",&c);
 		i++;//节点数增加 
@@ -38,7 +40,7 @@ int main()
 	{
 		struct link *p = NULL ,*pr = head; //设定两个指针用于链表
 		 int date ;
-		 p = (struct link *) malloc (sizeof (struct link ));
+		 p = (struct link *)malloc(sizeof (struct link));
 		 //为新的节点分配内存，前面括号的操作为强制malloc返回的指针类型转换为struct link 类型 
 		 if(p == NULL )
 		 {
@@ -47,10 +49,41 @@ int main()
 		  } 
 		  if (head == NULL)      //假设原链表为空表
 		  {
-		  	
+		  	head = p ;
 		   } 
-		  
-		  
+		   else 
+		   {
+		   	while (pr -> next != null)//如果原链表不为空表 
+		   	{
+		   	pr = pr ->next; //让pr指向下一个节点
+			    	
+			   }
+			   pr ->next = p; //让末节点的指针指向新建节点
+			    
+		   }
+		   
+		   printf("Input node date:\n");//让用户输入新物品的数据
+		   scanf("%d",&date);  //输入新节点的数据
+		   p ->date = date; //将新建节点的数据域赋值为输入的节点数据值，date 在本函数中开头已经定义
+		   p ->next = NULL; //新建节点设置为表尾
+		   return head;//返回添加节点后的头指针 
+		   
 		  
 	 } 
+	
+	void DisplyNode (struct link *head)
+	{
+		struct link *p = head;
+		int j = 1; //
+		while (p != NULL)//若不是表尾则循环打印节点的值
+		{
+        printf("%5d%10d\n ",j,p-> next);
+			p = p->next ;
+			j++;
+		
+		 } 
+		
+	 } 
+	
+	
 	
