@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,10 +6,9 @@ struct link *additems (struct link *head);
 void DisplyNode (struct link *head);
 void DeleteMemory (struct link *head);
 
-struct items   //定义物品数据 
+struct link   //定义物品数据 
 {
-int price ;
-char name;
+
 int date ;//存储节点的数据信息
 struct link *next ;//存储直接后继节点的地址
  
@@ -25,7 +23,7 @@ int main()
 	scanf ("%c",&c);//把用户的结果存储在c字符的地址上
 	while ( c == 'Y' || c == 'y')
 	{
-		head = Additems(head); //向head 为头指针的链表末尾添加 节点 即物品
+		head = additems(head); //向head 为头指针的链表末尾添加 节点 即物品
 		DisplyNode (head);//显示各节点信息(如何理解？)
 		printf("\nDo you want to add a new item (Y/N)\n");
 		scanf ("%c ",&c);
@@ -40,7 +38,7 @@ int main()
 	{
 		struct link *p = NULL ,*pr = head; //设定两个指针用于链表
 		 int date ;
-		 p = (struct link *)malloc(sizeof (struct link));
+		 p = ( struct link*)malloc(sizeof(struct link));
 		 //为新的节点分配内存，前面括号的操作为强制malloc返回的指针类型转换为struct link 类型 
 		 if(p == NULL )
 		 {
@@ -53,7 +51,7 @@ int main()
 		   } 
 		   else 
 		   {
-		   	while (pr -> next != null)//如果原链表不为空表 
+		   	while (pr ->next != NULL)//如果原链表不为空表 
 		   	{
 		   	pr = pr ->next; //让pr指向下一个节点
 			    	
@@ -84,6 +82,19 @@ int main()
 		 } 
 		
 	 } 
+	
+	
+void DeleteplyNode(struct link *head)
+{
+	struct link *p = head, *pr =NULL;
+	while(p!= NULL)
+	{
+		pr = p;
+		p =p->next ;
+		free (pr);
+	}
+	
+}
 	
 	
 	
