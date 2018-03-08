@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+#define SIZE 40
+struct link *additems (struct link *head);
+void DisplyNode (struct link *head);
+void DeleteMemory (struct link *head);
+
+struct items   //定义物品数据 
+{
+int price ;
+char name[SiZE];
+int date ;//存储节点的数据信息
+struct link *next ;//存储直接后继节点的地址
+ 
+};
+
+int main()
+{
+	int i = 0;
+	char c;
+	struct link *head = NULL //定义链表头指针
+	printf ("Do you want add a new item (Y/N)\n");
+	scanf ("%c",&c);//把用户的结果存储在c字符的地址上
+	while ( c == 'Y' || c == 'y')
+	{
+		head = Additems (head); //向head 为头指针的链表末尾添加 节点 即物品
+		DisplyNode (head)；//显示各节点信息(如何理解？)
+		printf("\nDo you want to add a new item (Y/N)\n");
+		scanf ("%c ",&c);
+		i++;//节点数增加 
+	}
+	printf("A new item has been created!\n");
+	DeleteMemory ( head);//释放所有动态内存
+	
+	//以下函数功能为新建一个节点并添加到链表末尾，返回添加节点后的链表后的头指针
+	
+	struct link *additems(struct link *head)
+	{
+		struct link *p = NULL ,*pr = head; //设定两个指针用于链表
+		 int date ;
+		 p = (struct link *) malloc (sizeof (struct link ));
+		 //为新的节点分配内存，前面括号的操作为强制malloc返回的指针类型转换为struct link 类型 
+		 if(p == NULL )
+		 {
+		 	printf("No enough memory to allocate !\n");
+		 	exit (0);//退出程序 
+		  } 
+		  if (head == NULL)      //假设原链表为空表
+		  {
+		  	
+		   } 
+		  
+		  
+		  
+	 } 
+	
