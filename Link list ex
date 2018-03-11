@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+struct man *add(struct man *head);
+void DisplyNode (struct man *head);
+void DeleteMemory (struct man *head);
+int totalage (struct man *head);
+struct man 
+{
+	int age ;
+
+	struct man *next ;
+	
+	
+};
+
+int main ()
+{
+	int i = 0;
+	char c ;
+	struct man *head = NULL;
+	printf ("DO you want to create one (Y/N)?\n");
+	scanf (" %c",&c);
+	while (c == 'y'||c == 'Y')
+	{
+		head = add(head);
+		DisplyNode (head);
+		printf ("\nDo you want to create another one(Y/N)?");
+		scanf (" %c",&c);
+		i++;
+		}
+		
+	
+	printf("you have been create %d mans!",i);
+	totalage(head);
+	DeleteMemory(head);
+	
+	
+	
+}
+
+struct man *add(struct man *head)
+{
+	int age ;
+	struct man *p= head , *pr =NULL;
+	pr = (struct man *)malloc(sizeof(struct man));
+	if(pr == NULL)
+	{
+		printf("\nThese no enough memory .\n");
+		exit (0);
+	}
+	if (head == NULL)
+	{
+		head = pr ;
+		
+	}
+	else
+	{
+		while (p ->next != NULL)
+		{
+			p = p ->next ;
+			
+		}
+		p->next = pr ;
+		
+		
+	}
+	printf("\nInput the man's age :");
+		scanf ("%d",&age );
+		pr->age = age ;
+		pr ->next = NULL;
+	return head;
+	
+} 
+
+
+void DisplyNode (struct man *head)
+{
+	struct man *p = head;
+	int i = 1;
+	while (p!= NULL)
+	{
+		printf("The No.%d man's age is %d\n",i,p->age);
+		p = p->next;
+		i++;
+	}
+	
+}
+
+
+void DeleteMemory(struct man *head)
+{
+	struct man *p = head, *pr = NULL;
+	while (p!= NULL)
+	{
+		pr = p;
+		p = p->next ;
+		free (pr );
+	}
+	
+}
+
+int totalage (struct man *head)
+{
+	int num = 0;
+	struct man *p = head;
+	while (p!=NULL)
+	{
+		num+= p->age;
+		p = p->next;
+	}
+	printf("\ntheir age num is %d",num);
+	
+}
