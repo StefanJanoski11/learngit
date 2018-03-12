@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+ 
+
+
+typedef struct ITEM 
+{
+	int price ;
+	struct ITEM *next;
+	
+}item;
+
+
+item *additem(item *head);
+void DisplyNode (item *head);
+void DeleteMemory (item *head);
+
+int main()
+{
+	int i;
+	char c;
+	item *head = NULL;
+	
+	printf ("Do you want to create a new item?(Y/N)?\n");
+	scanf(" %c",&c);
+	while (c == 'y'||c == 'Y')
+	{
+		head =additem(head);
+		DisplyNode(head);
+		printf ("\nDo you want to create another items?(Y/N)?\n");
+		scanf (" %c",&c);
+		i++;
+		
+	}
+	printf ("you have been create %d item ",i);
+	DeleteMemory(head);
+	return 0;
+}
+item* additem(item *head)
+{
+	int i;
+	item *p = head , *pr = NULL;
+	 pr = (item *)malloc(sizeof(item));
+	while (p!=NULL)
+	{
+		p = p->next;
+	}
+	p->next = pr;
+	printf("\nInput the item's price:\n");
+	scanf(" %d",&i);
+	p->price = i ;
+	p->next = NULL;
+	return head;
+	
+}
+
+void DisplyNode(item *head)
+{ int i =1 ;
+	item *p = head ;
+	while (p!= NULL)
+	{
+		printf("\the NO.%d item's price is:",i,p->price);
+		i++;
+	}
+	
+}
+
+void DeleteMemory(item *head)
+{
+		item *p = head, *pr = NULL ;
+	while (p!= NULL)
+	{
+		pr = p;
+		p = p->next;
+		free (pr);
+	}
+	
+}
